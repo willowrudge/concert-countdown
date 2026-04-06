@@ -1,2 +1,2 @@
-# lolla-countdown
+# concert countdown
 A chrome extension that counts down for any concert
