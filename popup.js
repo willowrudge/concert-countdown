@@ -1,3 +1,12 @@
+async function loadEvent() {
+    try {
+        return await chrome.storage.sync.get(["name", "date", "location", "playlistUrl"])
+    } catch (error) {
+        console.log("Something went wrong", error)
+    }
+    
+}
+
 function getTimeRemaining(dateString) {
     const now = new Date();
     const target = new Date(dateString);
