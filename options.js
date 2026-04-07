@@ -1,9 +1,9 @@
-async function saveEvent(name, date, location, playlistURL) {
+async function saveEvent(name, date, location, playlistUrl) {
     const data = {
         name: name, 
         date: date, 
         location: location, 
-        playlistURL: playlistURL};
+        playlistUrl: playlistUrl};
 
     try {
         await chrome.storage.sync.set(data)
