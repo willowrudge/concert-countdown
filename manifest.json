@@ -7,7 +7,6 @@
     "default_popup": "popup.html"
   },
   "permissions": ["storage"],
-  "options_page": "options.html",
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   }

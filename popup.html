@@ -1,14 +1,53 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-    <title>Concert Countdown Settings</title>
+    <title>Concert Countdown</title>
+    <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <span id="days">0</span>
-    <span id="hours">0</span>
-    <span id="minutes">0</span>
-    <span id="seconds">0</span>
-    <iframe id="spotify" src="" width="300" height="152"></iframe>
-    <script src="popup.js"></script>
+    <div id="setup-view" class="view">
+      <h1>Enter event details</h1>
+      <input type="text" id="name" placeholder="Event name" />
+      <input type="date" id="date" />
+      <input type="text" id="location" placeholder="Location" />
+      <input type="url" id="playlist" placeholder="Spotify playlist URL" />
+      <button id="save">Save</button>
+    </div>
+
+<div id="countdown-view" class="view hidden">
+
+  <div class="countdown-grid">
+    <div class="time-block">
+      <span id="days">0</span>
+      <p>days</p>
+    </div>
+    <div class="time-block">
+      <span id="hours">0</span>
+      <p>hours</p>
+    </div>
+    <div class="time-block">
+      <span id="minutes">0</span>
+      <p>mins</p>
+    </div>
+    <div class="time-block">
+      <span id="seconds">0</span>
+      <p>secs</p>
+    </div>
+  </div>
+
+  <p id="event-name-display">Event</p>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+
+  <p class="listen-text">Listen while you wait</p>
+  <iframe id="spotify" src="" width="100%" height="200" frameborder="0"></iframe>
+
+  <p id="reset">Change event</p>
+</div>
+
+<script src="popup.js"></script>
   </body>
 </html>
