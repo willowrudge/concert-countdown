@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Lollapalooza Countdown",
+  "version": "1.0",
+  "description": "A Chrome extension to count down to any concert.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage"],
+  "options_page": "options.html"
+}
