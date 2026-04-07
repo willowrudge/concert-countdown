@@ -20,3 +20,11 @@ async function loadEvent() {
     }
     
 }
+
+document.getElementById("save").addEventListener("click", () => {
+    const name = document.getElementById("name").value;
+    const date = document.getElementById("date").value;
+    const location = document.getElementById("location").value;
+    const playlist = document.getElementById("playlist").value;
+    saveEvent(name, date, location, playlist);
+});

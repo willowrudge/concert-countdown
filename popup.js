@@ -21,3 +21,18 @@ async function startCountdown() {
     document.getElementById("seconds").textContent = timeLeft.secs;
 }, 1000);   
 }
+
+function getPlaylistId(url) {
+    const match = url.match(/playlist\/([a-zA-Z0-9]+)/);
+    return match ? match[1] : null;
+}
+
+async function init() {
+    const event = await loadEvent();
+    const playlistId = getPlaylistId(event.playlistUrl);
+    document.getElementById("spotify").src = 
+        `https://open.spotify.com/embed/playlist/${playlistId}`;
+    startCountdown();
+}
+
+init();
