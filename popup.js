@@ -38,6 +38,7 @@ function getPlaylistId(url) {
 
 async function init() {
     const event = await loadEvent();
+    console.log("Loaded event:", event);
     const playlistId = getPlaylistId(event.playlistUrl);
     document.getElementById("spotify").src = 
         `https://open.spotify.com/embed/playlist/${playlistId}`;
