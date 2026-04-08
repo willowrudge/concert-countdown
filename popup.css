@@ -5,10 +5,10 @@
   }
 
 body {
-width: 340px;
-background: #fef9c3;
-font-family: 'Georgia', serif;
-border: 3px solid #a855f7;
+    width: 480px;
+    background: #fef9c3;
+    font-family: 'Georgia', serif;
+    border: 3px solid #a855f7;
 }
 
 .hidden {
