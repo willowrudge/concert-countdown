@@ -1,46 +1,55 @@
-const CLIENT_ID = "your client ID here"; // replace with your Spotify client ID
+const CLIENT_ID = "your_client_id"; // replace with your client ID
 const REDIRECT_URI = chrome.identity.getRedirectURL();
 const SCOPES = [
-    "streaming",
-    "user-read-email",
-    "user-read-private",
-    "user-read-playback-state",
-    "user-modify-playback-state"
+  "streaming",
+  "user-read-email",
+  "user-read-private",
+  "user-read-playback-state",
+  "user-modify-playback-state"
 ].join(" ");
 
-function getAuthUrl(){
-    return `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=${SCOPES}`;
+function getAuthUrl() {
+  return `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}` +
+    `&response_type=token&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
+    `&scope=${encodeURIComponent(SCOPES)}`;
 }
 
-async function authenticate(){
+async function authenticate() {
+  try {
     const authUrl = getAuthUrl();
+    console.log("[auth] authUrl:", authUrl);
+    console.log("[auth] chrome.identity.getRedirectURL():", chrome.identity.getRedirectURL());
     const responseUrl = await chrome.identity.launchWebAuthFlow({
-    url: authUrl,
-    interactive: true
-});
-return responseUrl
-}
-
-async function getAccessToken(){
-    const responseUrl = await authenticate();
-    const url = new URL(responseUrl);
-    const code = url.searchParams.get("code");
-    const response = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams({
-            grant_type: "authorization_code",
-            code: code,
-            redirect_uri: REDIRECT_URI,
-            client_id: CLIENT_ID
-        })
+      url: authUrl,
+      interactive: true
     });
-    const data = await response.json();
-    return data.access_token;
+    console.log("[auth] launchWebAuthFlow responseUrl:", responseUrl);
+    return responseUrl;
+  } catch (err) {
+    console.error("[auth] authenticate error:", err);
+    return null;
+  }
 }
 
-async function saveToken(token) {
-    return await chrome.storage.sync.set({ accessToken: token });
+async function getAccessToken() {
+  try {
+    const responseUrl = await authenticate();
+    console.log("[auth] responseUrl:", responseUrl);
+    if (!responseUrl) return null;
+    const fragment = (responseUrl.split('#')[1] || "");
+    console.log("[auth] fragment:", fragment);
+    const params = new URLSearchParams(fragment);
+    const token = params.get("access_token");
+    console.log("[auth] token:", !!token);
+    if (token) {
+      await chrome.storage.sync.set({ accessToken: token });
+      console.log("[auth] saved accessToken to storage");
+      return token;
+    }
+    console.warn("[auth] no access_token in redirect");
+    return null;
+  } catch (err) {
+    console.error("[auth] getAccessToken error:", err);
+    return null;
+  }
 }

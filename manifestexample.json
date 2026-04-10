@@ -15,14 +15,15 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "css": ["content.css"]
     }
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
   "oauth2": {
-    "client_id": "c7ceb448242047ebb09d39cfa001abe6",
+    "client_id": "your_client_id",
     "scopes": []
   },
   "background": {
