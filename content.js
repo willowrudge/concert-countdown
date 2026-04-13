@@ -133,6 +133,12 @@ function makeDraggable(host) {
     document.removeEventListener("pointerup", onUp);
     const el = host.shadowRoot && host.shadowRoot.querySelector('#concert-countdown-overlay');
     if (el) el.style.cursor = "grab";
+    chrome.storage.sync.set({
+    overlayLeft: host.style.left,
+    overlayTop: host.style.top,
+    overlayWidth: host.style.width,
+    overlayHeight: host.style.height
+    });
   }
   
   host.addEventListener("pointerdown", (e) => {
@@ -265,6 +271,11 @@ async function init() {
   if (!items || !items.date) return;
   console.log("[content] overlay data:", items);
   const host = createOverlay();
+  const state = await chrome.storage.sync.get(["overlayLeft", "overlayTop", "overlayWidth", "overlayHeight"]);
+  if (state.overlayLeft) host.style.left = state.overlayLeft;
+  if (state.overlayTop) host.style.top = state.overlayTop;
+  if (state.overlayWidth) host.style.width = state.overlayWidth;
+  if (state.overlayHeight) host.style.height = state.overlayHeight;
   makeDraggable(host);
   updateOverlay(host, items);
   setupControls(host);
