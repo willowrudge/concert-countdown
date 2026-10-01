@@ -40,7 +40,7 @@ A Chrome extension that counts down to your next concert or festival with a drag
 
    In your app's settings on the Spotify Developer Dashboard, add this under **Redirect URIs** and save:
 ```
-   https://<cnjijohljoddflenfjilohbaacpjkicn>.chromiumapp.org/
+   https://YOUR_ID_HERE.chromiumapp.org/
 ```
 
 4. Load the extension in Chrome
@@ -57,13 +57,14 @@ concert-countdown/
 ├── popup.js            # Popup logic
 ├── popup.css           # Popup styling
 ├── content.js          # Overlay injected into every page
-├── content.css         # Overlay styling
 ├── background.js       # Spotify API calls and OAuth
 ```
 
 ## Privacy
 
-This extension does not collect or transmit any user data. All event details are stored locally on your device using Chrome's built-in storage API. Spotify authentication tokens are stored locally and used only to communicate with the Spotify API on your behalf.
+This extension does not collect your data or send it to the developer. Your event details are stored on your device using Chrome's storage API. If you connect Spotify, your access tokens are stored locally and sent only to Spotify to control playback on your behalf. The extension does not read the content or addresses of the pages you visit.
+
+See [PRIVACY.md](PRIVACY.md) for the full policy.
 
 ## License
 

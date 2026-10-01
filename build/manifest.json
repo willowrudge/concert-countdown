@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Concert Countdown",
+  "version": "1.0.1",
+  "description": "A Chrome extension to count down to any concert.",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "storage",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://accounts.spotify.com/*",
+    "https://api.spotify.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Concert Countdown",
-  "version": "1.0",
+  "version": "1.0.1",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuiRVewGCHpjM8a/D1SoIZ5Bv4SWcaen91kgWsHPpcvdZ1l1U+3mPAOtHAK4NABirgNnLmc4p2XDdiRZV5rymKyHcraR+UDN8YbJ/ftblty/wpUEL1pmcEc4Bv9hK3AXh5FSe7PA4b/16A3/zG7ygUwgZdt/BuYsiBYWEkhsoJdpEh1ucOUqdG/G3K2V6daFD/q+H3fRI0xDL/gcYvXqOpzvHCvSzFwJTyAADAJp1KTgh3eN/NLtS/ti3LtL8mKHm4krTuoeGTQ73+Eol/geyHY56Jb/WqfNCopAxGnJe/tcHLps5e8LKNLgs2mZAaoETIYzsftxaQxTEABCltg1JVQIDAQAB",
   "description": "A Chrome extension to count down to any concert.",
   "action": {
@@ -10,8 +10,7 @@
   "permissions": ["storage", "identity"],
   "host_permissions": [
     "https://accounts.spotify.com/*",
-    "https://api.spotify.com/*",
-    "https://sdk.scdn.co/*"
+    "https://api.spotify.com/*"
   ],
   "content_scripts": [
     {
@@ -21,10 +20,6 @@
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  },
-  "oauth2": {
-    "client_id": "c7ceb448242047ebb09d39cfa001abe6",
-    "scopes": []
   },
   "background": {
     "service_worker": "background.js"
