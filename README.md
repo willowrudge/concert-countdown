@@ -29,16 +29,21 @@ A Chrome extension that counts down to your next concert or festival with a drag
 
 1. Clone the repo
 ```bash
-   git clone https://github.com/willowrudge/lolla-countdown.git
+   git clone https://github.com/willowrudge/concert-countdown.git
 ```
 
 2. Add your Spotify Client ID
-```bash
-   cp auth.js
-```
-   Then open `auth.js` and replace the current client ID with your actual Spotify Client ID from [developer.spotify.com](https://developer.spotify.com)
 
-3. Load the extension in Chrome
+   Open `background.js` and replace the current `CLIENT_ID` with your actual Spotify Client ID from [developer.spotify.com](https://developer.spotify.com)
+
+3. Register the redirect URI
+
+   In your app's settings on the Spotify Developer Dashboard, add this under **Redirect URIs** and save:
+```
+   https://<cnjijohljoddflenfjilohbaacpjkicn>.chromiumapp.org/
+```
+
+4. Load the extension in Chrome
    - Go to `chrome://extensions`
    - Enable **Developer mode**
    - Click **Load unpacked** and select the project folder
@@ -53,8 +58,7 @@ concert-countdown/
 ├── popup.css           # Popup styling
 ├── content.js          # Overlay injected into every page
 ├── content.css         # Overlay styling
-├── background.js       # Spotify API calls
-├── auth.js             # Spotify OAuth 
+├── background.js       # Spotify API calls and OAuth
 ```
 
 ## Privacy
